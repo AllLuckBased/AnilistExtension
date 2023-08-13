@@ -1,8 +1,8 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "AnilistExtension",
   "version": "1.0",
-  "description": "Additional anilist features",
+  "description": "Additional Anilist features",
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
@@ -11,20 +11,18 @@
   "permissions": [
     "activeTab"
   ],
-  "browser_action": {
+  "action": {
+    "default_popup": "popup.html",
     "default_icon": {
-        "16": "icon.png",
-        "32": "icon.png",
-        "48": "icon.png",
-        "128": "icon.png"
-    },
-    "default_title": "AnilistExtension",
-    "default_popup": "popup.html"
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
   },
   "content_scripts": [
     {
       "matches": [
-          "https://anilist.co/*"
+        "https://anilist.co/*"
       ],
       "js": ["contentScript.js"]
     }
