@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Anilist Extension</title>
+  <title>AniCompare</title>
   <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
-  <img src="icon.png" alt="Anilist Extension">
-  <h1>Anilist Extension</h1>
+  <img src="icon.png" alt="Anilist Logo">
+  <h1>AniCompare for Anilist</h1>
   <p>Sorts the comparison table based on the score difference between you and Anilist user.</p>
+  <label>Select your scoring system:</label>
+  <select id="scoreFormatDropdown">
+    <option value="100">Out of 100</option>
+    <option value="10" selected>Out of 10</option>
+    <option value="5">Out of 5 (stars)</option>
+    <option value="3">Out of 3 (smileys)</option>
+  </select>
   <div class="mean-score"></div>
   <button id="sortButton">Sort comparison</button>
   <script src="popup.js"></script>

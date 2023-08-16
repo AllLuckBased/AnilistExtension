@@ -5,10 +5,13 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 
 document.addEventListener('DOMContentLoaded', () => {
   const sortButton = document.getElementById('sortButton');
+  const scoreFormatDropdown = document.getElementById('scoreFormatDropdown');
 
   sortButton.addEventListener('click', () => {
+    const selectedScoreFormat = parseInt(scoreFormatDropdown.value);
+    console.log(selectedScoreFormat)
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      fetchUserPrecision(tabs[0].url.match(/\/user\/([^/]+)\//)[1]).then(scoreScaleFactor => {
+      fetchUserPrecision(tabs[0].url.match(/\/user\/([^/]+)\//)[1], selectedScoreFormat).then(scoreScaleFactor => {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'sortComparison', scoreScaleFactor: scoreScaleFactor }, (response) => {
           console.log(response);
           const meanScoreElement = document.querySelector('.mean-score');
@@ -19,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-async function fetchUserPrecision(username) {
+async function fetchUserPrecision(username, selectedScoreFormat) {
   const query = `
     query ($name: String) {
       User(name:$name) {
@@ -46,14 +49,14 @@ async function fetchUserPrecision(username) {
   const json = await response.json();
   switch(json.data.User.mediaListOptions.scoreFormat) {
     case "POINT_100":
-      return 0.1;
+      return selectedScoreFormat/100;
     case "POINT_10_DECIMAL":
-      return 1;
+      return selectedScoreFormat/10;
     case "POINT_10":
-      return 1;
+      return selectedScoreFormat/10;
     case "POINT_5":
-      return 2;
+      return selectedScoreFormat/5;
     case "POINT_3":
-      return 3;
+      return selectedScoreFormat/3;
   }
 }

@@ -1,6 +1,7 @@
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   if (request.action === 'sortComparison') {
     let meanDifference = 0;
+    console.log(request.scoreScaleFactor)
 
     // This is the table which contains all the entries (header included) like anime_name, my_score, his_score
     const compareElement = document.querySelector('.compare');

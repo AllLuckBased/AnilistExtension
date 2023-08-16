@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "AnilistExtension",
-  "version": "1.0",
+  "name": "AniCompare",
+  "version": "2.0",
   "description": "Additional Anilist features",
   "icons": {
     "16": "icon.png",

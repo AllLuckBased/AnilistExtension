@@ -22,6 +22,37 @@ body {
     text-align: justify;
   }
 
+  select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+  }
+
+  option[selected] {
+      font-weight: bold;
+  }
+
+  select::-ms-expand {
+      display: none;
+  }
+
+  select:hover {
+      border-color: #999;
+  }
+
+  body.dark select {
+      background-color: #444;
+      color: #eee;
+      border-color: #666;
+  }
+
   button {
     display: block;
     margin: 0 auto;
@@ -53,8 +84,6 @@ body {
     margin-bottom: 10px;
     text-align: center;
   }
-
-  /* Dark mode styles */
 
   body.dark {
     background-color: #333;
